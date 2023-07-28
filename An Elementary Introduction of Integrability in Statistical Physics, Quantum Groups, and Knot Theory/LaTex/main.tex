@@ -1,0 +1,676 @@
+\documentclass[11pt]{article}
+\usepackage{dsfont}
+\usepackage{amsmath} % to create a \cste operator 
+\usepackage{cancel}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts} 
+\usepackage{mathrsfs}
+\usepackage{enumerate}
+\usepackage{url}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue]{hyperref}
+
+\usepackage[all]{xy}
+\usepackage{amsmath,calligra,mathrsfs}
+\DeclareMathOperator{\cste}{cste}
+% operators
+\DeclareMathOperator{\aut}{Aut}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+  \DeclareMathOperator{\br}{Br}
+  \DeclareMathOperator{\cl}{cl}
+  \DeclareMathOperator{\cosp}{cosp}
+  \DeclareMathOperator{\dv}{div}
+  \DeclareMathOperator{\Div}{Div}
+  \DeclareMathOperator{\ext}{Ext^{1}}
+  \DeclareMathOperator{\Ext}{\mathscr{E}\text{\kern -2pt {\calligra\large xt}}\,\,} 
+  \DeclareMathOperator{\gal}{Gal}
+  \DeclareMathOperator{\gl}{GL}
+  \DeclareMathOperator{\gr}{gr}
+  \DeclareMathOperator{\h}{H}
+  \DeclareMathOperator{\hh}{\mathsf{H}} 
+  \DeclareMathOperator{\shom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,} 
+  \DeclareMathOperator{\im}{im}
+  \DeclareMathOperator{\ob}{Ob}
+  \DeclareMathOperator{\pgl}{PGL}
+  \DeclareMathOperator{\pic}{Pic} 
+  \DeclareMathOperator{\res}{R}  % restriction of scalars
+  \DeclareMathOperator{\rHom}{\mathrm{R}\vspace{-1pt}\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+  \DeclareMathOperator{\sh}{Sh}
+  \DeclareMathOperator{\spe}{sp} % specialisation
+  \DeclareMathOperator{\spec}{Spec}
+  \DeclareMathOperator{\swan}{Sw}
+  \DeclareMathOperator{\tor}{Tor}
+  \DeclareMathOperator{\Tor}{\mathscr{T}\text{\kern -4pt {\calligra\large or}}\,} % sheaf tor
+  \DeclareMathOperator{\tr}{Tr}
+ \DeclareMathOperator{\rg}{rg}
+ \DeclareMathOperator{\degr}{deg}
+% \DeclareMathOperator{\dim}{dim}
+\DeclareMathOperator{\coh}{Coh(\mathbb{P}_{k}^{1})}
+\DeclareMathOperator{\P1}{\mathbb{P}_{k}^{1}}
+\DeclareMathOperator{\cok}{Coker}
+\DeclareMathOperator{\sn}{\mathfrak{S}_n}
+\DeclareMathOperator{\Fq}{\mathbb{F}_{q}}
+\DeclareMathOperator{\hac}{H(\coh)}
+\DeclareMathOperator{\hactx}{H(\coh_{\tor[x]})}
+\DeclareMathOperator{\hact}{H(\coh_{\tor})}
+\DeclareMathOperator{\hacl}{H(\coh_{l})}
+\DeclareMathOperator{\alpv}{\alpha^{\vee}}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\mult}{mult}
+\DeclareMathOperator{\go}{\overset{o}{\mathfrak{g}}}
+\DeclareMathOperator{\pio}{{\overset{o}{\Pi}}}
+\DeclareMathOperator{\h0}{\overset{o}{\mathfrak{h}}}
+\DeclareMathOperator{\w0}{\overset{o}{W}}
+\DeclareMathOperator{\hod}{\overset{o}{\mathfrak{h}^{\ast}}}
+\DeclareMathOperator{\Deltao}{\overset{o}{\Delta}}
+\DeclareMathOperator{\sl2}{Sl_2}
+% les bras et les kets
+\newcommand{\bra}[1]{\langle\,#1\,|}
+\newcommand{\ket}[1]{|\,#1\,\rangle}
+\newcommand{\braket}[2]{\ensuremath{\langle\, #1 \mid  #2\, \rangle }}
+\newcommand{\moy}[1]{\langle\,#1\,\rangle}
+\newcommand{\vac}{\mathrm{vac}}
+\newcommand{\zero}{\mathbb{0}}
+
+\theoremstyle{definition}
+\newtheorem{theo}{Theorem}[section]
+\newtheorem{Prop}{Proposition}[section]
+\newtheorem{ex}{Example}[section]
+\newtheorem{cor}{Corollaire}[section]
+\newtheorem{lemma}{Lemme}[section]
+\newtheorem{preuve}{Preuve}[section]
+\newtheorem{rem}{Remarque}[section]
+\newtheorem{cdt}{Condition}[section]
+\newtheorem{Def}{Definition}[section]
+
+\title{\textbf{An Elementary Introduction of Integrability in Statistical Physics, Quantum Groups, and Knot Theory} }
+\author{Riddhiman Bhattacharya}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+    \small This article provides an elementary introduction to the concept of integrability as it relates to statistical physics, quantum groups, and knot theory. The exploration begins with a detailed examination of the \textbf{$6$ vertex model}, a lattice system in statistical physics. We elucidate how the concept of integrability arises in this model and its crucial connection to the Yang-Baxter equation. The solutions to the Yang-Baxter equation, known as $R$ matrices, form a Yang-Baxter algebra, serving as a foundation for the study of quantum groups.
+Quantum groups, a fascinating mathematical structure, are introduced as non-commutative, non-co-commutative deformations of enveloping Lie algebras. Their \textbf{Hopf algebra} structure is explored, along with their self-duality properties. We investigate how quantum groups are significant in various mathematical and physical contexts, providing a deeper understanding of their importance.
+
+Delving into the captivating realm of knot theory, we introduce the Jones polynomial, a fundamental algebraic invariant. This polynomial allows us to distinguish between distinct knots, providing valuable information about their underlying structures and properties.
+
+We explore the connections between $R$ matrices and Artin's braid group, revealing how these matrices offer essential representations for the braid group and its interplay with knot theory.
+
+The notion of tangles is introduced, highlighting their role in defining quantum invariants of knots. The concept of a Ribbon category is discussed, showcasing the intricate relationships between tangles, quantum groups, and knot theory.
+
+The primary references used throughout this exploration are \cite{GomezRuizSierra} for the statistical physics part and \cite{Kassel} and \cite{KasRossTur} for quantum groups and knot theory, respectively. This article aims to provide readers with a comprehensive and detailed entry point into the intriguing worlds of integrability in statistical physics, quantum groups, and knot theory. 
+\end{abstract}
+\pagebreak
+\tableofcontents
+\pagebreak
+\large
+\section{\Large \textbf{Integrability in statistical physics}}
+The objective of physics is to comprehend the behavior of systems composed of particles that interact with each other and to predict their actions. When dealing with a large number of degrees of freedom, such as the particles in $1 m^3$ of air, theoretical physicists employ statistical methods by coarse-graining the individual particles. This enables them to analyze the collective behavior of the system on a macroscopic scale. Statistical physics is the theoretical framework that facilitates this transition from the microscopic to the macroscopic level.\vspace{0.2cm} 
+
+The evolution of a physical system over time is determined by a linear operator known as the Hamiltonian. This operator physically represents the energy of the system. In statistical physics, particularly at thermodynamic equilibrium, a significant function is the partition function, denoted as follows:
+
+\[ Z = \text{tr}_{\mathcal{H}}\left(\exp\left(-\frac{H}{kT}\right)\right) \]
+
+Here, \( H \) is a linear operator that acts on the Hilbert space \( \mathcal{H} \) of the system's states, \( T \) is the temperature, and \( k \) is the Boltzmann constant—a fundamental constant in statistical physics. The partition function plays a crucial role in understanding thermal systems because various observable quantities, such as the internal energy \( U \) of the system, can be derived from it. Specifically, the internal energy \( U \) (or the average energy \( \langle E \rangle \)) is given by:
+
+\[ U = \langle E \rangle = \frac{-1}{\beta}\frac{\partial Z}{\partial\beta} \]
+
+where \( \beta = \frac{1}{kT} \).
+
+Here, is an initial introduction to the topic of integrable systems:
+
+\begin{Def} 
+A system is considered exactly solvable (or integrable) if it is possible to completely diagonalize the Hamiltonian and express the correlation functions of the model using ordinary functions.
+\end{Def}
+
+The two-point correlation function of a physical system involving physical observables $\mathcal{O}_1$ and $\mathcal{O}_2$ is given by:
+
+\[ \langle \mathcal{O}_1\,\mathcal{O}_2 \rangle = \frac{\text{tr}_\mathcal{H} \left( \, \mathcal{O}_1\,\mathcal{O}_2 \, e^{-H /kT}\right)}{\text{tr}_\mathcal{H} \left(e^{-H /kT}\right)} \]
+
+In general, the Hamiltonian of a physical system can be decomposed into two parts: \(H = H_{\text{free}} + H_{\text{int}}\). The first term, \(H_{\text{free}}\), corresponds to the Hamiltonian of the system when all particles are free and not interacting with each other. The second term, \(H_{\text{int}}\), represents the interaction term, which often introduces non-linearities and makes it challenging to exactly solve the model. As a result, various approximation techniques, such as mean field theory or Feynman diagrams expansion, are employed to compute measurable quantities and understand real-life physics. However, there exist special models known as exactly solvable models or integrable models, which do not require approximations to be solved.
+
+In this context, we will focus on a particularly important and insightful model, the celebrated 6 vertex model, where computations are not overly technical, and many fundamental ideas of integrable models come into play.
+
+
+\section{\Large \textbf{The 6 vertex model and the Yang-Baxter equation}}
+A vertex model in statistical physics consists of a lattice where exactly two lines intersect at each vertex. The 6 vertex model is specifically defined on a square lattice of size \(N \times N\). Each edge is colored with either \(-1\) or \(1\), representing an unoccupied/occupied state or equivalently, spin down/spin up. The constraint that the sum of the colored edges around each vertex must be zero defines the 6 vertex model, resulting in exactly 6 possible configurations around one vertex. At each vertex of the lattice, a statistical weight \(W_{\alpha_{1}\beta_{1}}^{\beta_2\alpha_1}\) is assigned, where \(\alpha_{1}\), \(\beta_{1}\), \(\beta_{2}\), and \(\alpha_1\) represent the colors of each edge. 
+
+The partition function of the system is given by:
+
+\[Z=\text{tr}_{\mathcal{H}_{V}}(t(u,v,w)^N)\]
+
+Here, \(\mathcal{H}_{V}\) is the Hilbert space of vertical states, and \(t(u,v,w)\) represents the transfer matrix of the model. The transfer matrix depends on three parameters: \(u\), \(v\), and \(w\), which are the three statistical weights of the model. The remaining statistical weights can be deduced from \(u\), \(v\), and \(w\) using some symmetry properties. By imposing periodic boundary conditions, the transfer matrix is defined as:
+
+\[\langle\beta| t(u,v,w)|\alpha\rangle=\sum_{\mu}W_{\mu_{1}\alpha_{1}}^{\beta_1\mu_2}W_{\mu_{2}\alpha_{2}}^{\beta_2\mu_3}....W_{\mu_{N}\alpha_{N}}^{\beta_N\mu_1}\]
+
+This quantity represents the probability of finding a vertical state \(|\alpha\rangle=|\alpha_1\rangle\otimes...\otimes|\alpha_N\rangle\) in another vertical state \(|\beta\rangle=|\beta_1\rangle\otimes...\otimes|\beta_N\rangle\).
+
+To each horizontal edge, a finite-dimensional vector space \(V_{a}\) is attached, which we will refer to as an \textit{auxiliary} space. Similarly, to each vertical edge \(i\in\{1,..,N\}\), a vector space \(V_{i}\) is attached. The vertical direction can be interpreted as time, and the horizontal direction as space. The transfer matrix serves as a time evolution operator and acts as an endomorphism on \(\mathcal{H}_{h}=V_{1}\otimes V_{2}\otimes...\otimes V_{N}\), which represents the space of horizontal edges. We can regard a Boltzmann weight \(W_{\mu_{1}\alpha_{1}}^{\beta_1\mu_2}\) as an endomorphism \(\mathcal{R}_{ai}\) of \(V_{a}\otimes V_{i}\), where \(a\) is an index parameterizing horizontal spaces, and \(i\) parameterizes vertical spaces, such that:
+
+\[W_{\mu_{i}\alpha_{i}}^{\beta_i\mu_{i+1}}=\mathcal{R}_{\mu_{i}\alpha_{i}}^{\mu_{i+1}\beta_{i}}\]
+
+Thus, we can rewrite the transfer matrix as follows:
+
+\[ t_{a}=\text{tr}_{a}\left(\mathcal{R}_{aN}\mathcal{R}_{aN-1}...\mathcal{R}_{a1}\right) \]
+
+This involves tracing out the auxiliary space and multiplying the \(R\) operator over the vertical edges. Our goal is to diagonalize the transfer matrix, as it is equivalent to diagonalizing the Hamiltonian (the vague reason for this is that the transfer matrix plays the role of a time evolution operator, similar to the Hamiltonian). To achieve this, we seek a constraint that ensures the commutativity of any two transfer matrices, known as the Yang-Baxter equation. For transfer matrices \(t_{a}\) and \(t'_{b}\), we have:
+
+\[t_{a}t'_{b}=\text{tr}_{a\times b}\left(\mathcal{R}_{aN}\mathcal{R}'_{bN}\mathcal{R}_{aN-1}\mathcal{R}'_{bN-1}...\mathcal{R}_{a1}\mathcal{R}_{b1}\right)\].
+Using the cyclicity of the trace, it can be observed that \(t_{a}\) and \(t'_{b}\) commute if and only if there exists an invertible linear operator \(\mathcal{R}''_{ab}\) such that:
+
+\[\mathcal{R}''_{ab}\mathcal{R}_{ai}\mathcal{R}'_{ai}\mathcal{R}''^{-1}_{ab}=\mathcal{R}'_{bi}\mathcal{R}_{ai}\]
+
+By relabelling the indices, we obtain the Yang-Baxter equation:
+
+\[\mathcal{R}_{12}\mathcal{R}'_{13}\mathcal{R}''_{23}=\mathcal{R}''_{23}\mathcal{R}'_{13}\mathcal{R}_{12}\]
+
+Here, \(\mathcal{R}_{12}\), \(\mathcal{R}'_{13}\), and \(\mathcal{R}''_{23}\) act on \(V_{1}\otimes V_{2}\), \(V_{1}\otimes V_{3}\), and \(V_{2}\otimes V_{3}\) respectively. Since the vector spaces \(V_{i}\) are two-dimensional, the \(R\)-matrix is represented as a \(4\times 4\) matrix. For the 6 vertex model, the \(R\)-matrix takes the following form:
+
+\[\mathcal{R}^{6v}(u,v,w)=
+\begin{pmatrix}
+   u & 0 & 0 & 0 \\
+   0 & v & w & 0 \\
+   0 & w & v & 0 \\
+   0 & 0 & 0 & u \\
+\end{pmatrix}
+\]
+
+\begin{Def} Let \(V\) be a finite-dimensional vector space. Consider a linear automorphism \(R\) of \(V\otimes V\). One says that \(R\) is an \(R\) matrix if it satisfies the Yang-Baxter equation:
+
+\[(R\otimes \text{id}_{V})(\text{id}_{V}\otimes R)(R\otimes \text{id}_{V})=(\text{id}_{V}\otimes R)(R\otimes \text{id}_{V})(\text{id}_{V}\otimes R)\]
+\end{Def}
+
+\begin{Def} A vertex model in statistical physics is called \textit{integrable} or exactly solvable if it possesses an \(R\)-matrix.
+\end{Def}
+
+\begin{ex} The \textit{flip} \(\tau_{V,V}\in \text{Aut}(V\otimes V)\) that switches two vectors is an \(R\) matrix.
+\end{ex}
+
+\begin{ex} The matrix \(\mathcal{R}^{6v}(u,v,w)\) is an \(R\) matrix.
+\end{ex}
+
+
+\section{\Large \textbf{The Yang-Baxter algebra}} 
+
+With the help of \textbf{Yang-Baxter equation} and the invertibility of the matrix \(\mathcal{R}^{6v}(u,v,w)\), we can express it as a matrix \(\mathcal{R}(\lambda)\) that depends only on one complex parameter \(\lambda\), given by:
+
+\[\mathcal{R}(\lambda):=\mathcal{R}^{6v}(u(\lambda),v(\lambda),w(\lambda))\]
+
+The Yang-Baxter equation now takes the form:
+
+\[(\mathcal{R}(\lambda)\otimes Id_2)(Id_2\otimes\mathcal{R}(\lambda+\mu))(\mathcal{R}(\mu)\otimes Id_2)=(Id_2\otimes\mathcal{R}(\mu))(\mathcal{R}(\lambda+\mu)\otimes Id_2)(Id_2\otimes\mathcal{R}(\lambda))\]
+
+Next, we introduce a crucial object known as the monodromy matrix \(T(\lambda)\):
+
+\[T(\lambda):=\mathcal{R}_{aN}\mathcal{R}_{aN-1}...\mathcal{R}_{a1}\]
+
+Thus, the trace of the monodromy matrix over the auxiliary space gives the transfer matrix. The monodromy matrix is a \(4\times 4\) matrix of operators A, B, C, and D that depend on the weights of the lattice, given by:
+
+\[
+T(\lambda)=
+\begin{pmatrix}
+A(\lambda) & B(\lambda) \\
+C(\lambda) & D(\lambda) \\
+\end{pmatrix}
+\]
+
+Using the previous Yang-Baxter equation, one can repeatedly verify that the monodromy matrix satisfies the important relation:
+
+
+\begin{equation}\label{YBmono}
+R(\lambda-\mu)(T(\lambda)\otimes Id)(Id\otimes T(\mu))=(T(\mu)\otimes Id)(T(\lambda)\otimes Id) R(\lambda-\mu)
+\end{equation}
+
+
+This leads to the formation of an algebra generated by the operators A, B, C, and D, which satisfy certain commutation relations, some of which are listed below (not an exhaustive list):
+
+\begin{align}
+&[B(\lambda),B(\mu)]=0\qquad [C(\lambda),C(\mu)]=0\\
+&[A(\lambda),A(\mu)]=0\qquad [D(\lambda),D(\mu)]=0\\
+&A(\lambda)B(\mu)=w(\lambda,\mu)A(\mu)B(\lambda)+v(\lambda,\mu)B(\mu)A(\lambda)\\
+&D(\mu)B(\lambda)=v(\lambda,\mu)B(\lambda)D(\mu)+w(\lambda,\mu)D(\lambda)B(\mu)\\
+&C(\lambda)D(\mu)=v(\lambda,\mu)C(\mu)D(\lambda)+w(\lambda,\mu)D(\mu)C(\lambda)\\
+&C(\mu)A(\lambda)=v(\lambda,\mu)A(\lambda)C(\mu)+w(\lambda,\mu)C(\lambda)A(\mu)\\
+&[C(\lambda),B(\mu)]=w(\lambda,\mu)v(\lambda,\mu)^{-1}[A(\lambda)D(\mu)-A(\mu)D(\lambda)]
+\end{align}
+
+These commutation relations govern the algebraic structure that arises from the interactions within the system. Diagonalizing the transfer matrix is equivalent to diagonalizing operators A and D simultaneously. This involves utilizing operators B and D as creation and annihilation operators, along with the commutation relations of the aforementioned algebra. The technical details of this process, known as the algebraic Bethe Ansatz, are beyond the scope of this discussion. Interested readers can refer to \cite{GomezRuizSierra} (section 2) for a more in-depth exploration.
+
+\begin{Def}
+A Yang-Baxter algebra is a pair \((\mathcal{R}, T)\) such that the quadratic relation \ref{YBmono} holds true.
+\end{Def}
+
+The link with quantum groups becomes apparent in the limit where the spectral parameter \(\lambda\) tends to infinity, as the Yang-Baxter Algebra is shown to be related to certain quantum groups.
+
+\section{\Large \textbf{Hopf algebra}}
+
+Let $k$ be a field and $A$ a $k$-module.\begin{Def} An algebra is a triple $(A,\eta,\mu)$  with unity $\eta : k\to A$ and a product $\mu: A\otimes A\to A$ such that: 
+\begin{align*} 
+\mbox{associativity}\quad\mu(id\otimes\mu) & =\mu(\mu\otimes id) \\
+\mbox{unitality}\quad\mu(id\otimes\eta) & =\mu(\eta\otimes id)=id_A \\
+\mu^{op} & =\mu\tau_{A,A}
+\end{align*} 
+If $\mu=\mu^{op}$, one says that the algebra is commutative.
+\end{Def}
+\begin{Def} A coalgebra is a triple $(A,\epsilon,\Delta)$ with counity $\epsilon : A\to k $ and \textit{coproduct} $\Delta : A\to A\otimes A $ such that : \begin{align*} 
+\mbox{coassociativity}\quad (id\otimes\Delta)\Delta & =\Delta(\Delta\otimes id) \\
+\mbox{counitality}\quad (id\otimes\epsilon)\Delta & =(\epsilon\otimes id)\Delta=id_{A} \\
+\Delta^{op} & =\tau_{A,A}\Delta
+\end{align*}
+If $\Delta^{op}=\Delta$ one says that the coalgebra is \textit{cocommutative}.
+\end{Def}
+\begin{Def} A \textit{bialgebra} is a tuple $(A,\mu,\eta,\Delta,\epsilon)$ such that $(A,\mu,\eta)$ is an algebra and  $(A,\Delta,\epsilon)$ is a coalgebra.
+\end{Def}
+\begin{ex}
+$A^{op}=(A,\mu^{op},\eta,\Delta,\epsilon)$ , $A^{cop} (A,\mu,\eta,\Delta^{op},\epsilon)$ and $A^{op,cop}=(A,\mu^{op},\eta,\Delta^{op},\epsilon)$ are all bialgebras
+\end{ex}
+\begin{ex} The dual of a bialgebra is a bialgebra (switch product and coproduct with using duality functor)
+\end{ex}
+\begin{ex} The Yang-Baxter algebra of the 6 vertex model studied in the last section is a bialgebra where the coproduct $\Delta$ is given by : $$\Delta(T_{j,i}(\lambda))=\sum_{k}T_{ki}(\lambda)\otimes T_{jk}(\lambda)$$
+\end{ex}
+\begin{Def} A Lie algebra $\mathfrak{g}$ is an algebra with a product $[\quad,\quad]$ anticommutative and satisfying the Jacobi identity.
+\end{Def}
+\begin{ex} The enveloping algebra $U(\mathfrak{g})$  a Lie algebra $\mathfrak{g}$ (which one can see as the tensor algebra of the Lie algebra quotiented by the commutation relations of the element of $\mathfrak{g}$) is a bialgebra with coproduct $\Delta$ such that : $$\forall x\in U(\mathfrak{g}),\quad\Delta(x)=1\otimes x+ x\otimes 1\quad\mbox{and}\quad \epsilon(x)=0$$
+So the enveloping algebra of a Lie algebra is a cocommutative bialgebra.
+\end{ex}
+\begin{Def} One can endow the vector space $\End(A)$ of a bialgebra $A$ with a \textit{convolution} product denoted $\star$ such that for all $f,g\in\End(A):$, $$f\star g=\mu(f\otimes g)\Delta $$
+\end{Def}
+\begin{Def} A Hopf algebra is a bialgebra in which the identity of $A$ as a two sided inverse $S$ for the convolution product. This inverse is called an \textit{antipode} and verifies : $$S\star id_A= id_A\star S=\eta\epsilon$$
+A morphism of a Hopf algebra is a morphism of the underlying bialgebra that commutes with the antipode.
+\end{Def}
+\begin{ex}
+Consider $U(\mathfrak{g})$ as the bialgebra defined previously. The $k$ linear map $S$ such that : $S(1)=1$ and $$\forall x_1,x_2,..x_n\in\mathfrak{g},\quad S(x_1x_2...x_n)=(-1)^nx_n..x_2x_1$$ is an antipode an thus allows us to construct a structure of Hopf algebra on $U(\mathfrak{g})$.
+\end{ex}
+\section{\Large \textbf{Quantum groups}}
+We are now ready to understand the notion of a quantum group. The name can be misleading because a quantum group is not a group nor quantum! Let us consider the Lie group $Sl_2$ of matrices of unit determinant and whose associated lie algebra $sl_2$ is the algebra of traceless matrices, over the complex numbers. Recall that $sl_2$ can be presented as generators $h,e,f$ with commutation relations such that : \begin{align*}
+[h,e]&=2e\\
+[h,f]&=-2f\\
+[e,f]&=h
+\end{align*}
+The cartan sub-algebra is generated by $h$ and $e$ is the generator of a borel(positive) subalgebra. Roughly a quantum group will be interpreted as a deformation of the lie algebra, i.e a family of algebra $U_q(sl_2)$ parameterized by a parameter $q$ such that when one specialized $q=1$ one recovers the classical enveloping  Lie algebra $U(sl_2)$. More precisely we will interpret it as a $q$-deformation of the algebra of the  derivations of regular functions over the Lie group $Sl_2$. Let us recall that one can construct structure of Hopf algebra on the algebra of regular functions $$\mathbb{C}[Sl_2]=\mathbb{C}[x_{11},x_{12},x_{21},x_{22},\det^{-1}]$$. The coproduct  being given by : $$\Delta(x_{ij})=\sum_k x_{ik}\otimes x_{kj} $$, the counit by $\epsilon(x_{ij})=\delta_{ij}$ and the antipode by the inversion of matrix. We introduce the notion of \textit{Hopf pairing} which allows us do define a notion of duality between Hopf algebras.\begin{Def}
+Let $A$ and $B$ be two Hopf algebras. A Hopf pairing is a bilinear form $(-,-) : A\otimes B\to k$ such that : \begin{align*}
+(a,bb')&=(\Delta_A(a),b\otimes b')\\
+(aa',b)&=(a\otimes a',\Delta_B(b))\\
+(a,1_B)&=\epsilon(a)\\
+(Sa,b)&=(a,S^{-1}b)\\
+\end{align*}
+If the bilinear form is non degenerate one says that the pairing is \textit{perfect}
+\begin{ex}\label{classical duality} One may check that the Hopf algebras $\mathbb{C}[Sl_2]$ and $U(sl_2)$ are dual, with the pairing satisfying (for example) : $$\forall u,v\in U(sl_2),\quad \langle uv,x_{11}\rangle = \langle u,x_{11}\rangle\langle v,x_{11}\rangle+\langle u,x_{12}\rangle\langle v,x_{21}\rangle$$
+\end{ex}
+\end{Def}
+It is important to note that the Hopf algebra $\mathbb{C}[Sl_2]$ which is commutative but not cocommutative and $U(sl_2)$ which is not commutative but cocommmutative are dual. The quantum group $U_q(sl_2)$ will bear the property to be a non cocommutative, not commutative, self dual Hopf algebra. By analogy with the previous classical case this self duality property allows us to think of the quantum group $U_q(sl_2)$ as a non commutative algebra of regular functions over some non commutative space and whose limit is the algebra of function over some Lie group. Whence the name "quantum group".
+\subsection{\Large \textbf{The quantum plane}}
+\begin{Def} The algebra of functions over the complex plane, quotiented by the relation \(xy=qyx\) for some indeterminate \(q\), is called the quantum plane. In other words, it is defined as: 
+\[\mathbb{C}_q\langle x,y\rangle:=\mathbb{C}[x,y]/(xy-qyx)\]
+
+There is a coaction of the Hopf algebra \(\mathbb{C}[Sl_2]\) on the plane \(\mathbb{C}[x,y]\) derived from matrix multiplication on a vector \((x,y)\in\mathbb{C}^2\). To define a deformation of the Hopf algebra \(\mathbb{C}[Sl_2]\), we seek a condition on the entries of a \(2\times 2\) matrix that ensures the relation \(xy=qyx\) in the quantum plane is satisfied.
+
+\begin{Prop} Let \(M=\begin{pmatrix} a & b \\ c & d \end{pmatrix}\) and \(X=(x,y)\), \(X'=(x',y')\), \(X''=(x'',y'')\) be three points in the quantum plane. The conditions:
+\[MX=X' \quad M^tX=X''\]
+give rise to the following commutation relations:
+\begin{align*}
+ba &= qba \quad db = qbd \\
+ca &= qac \quad dc = qcd \\
+bc &= cb \quad ad-da = (q^{-1}-q)bc
+\end{align*}
+We'll denote \(I_q\) as the ideal spanned by these relations.
+\end{Prop}
+\end{Def}
+\pagebreak
+\begin{Def} The quantum determinant of a \(2\times 2\) matrix \(M\) is defined as:
+\[\det_q(M) = da - qbc\]
+\end{Def}
+
+\begin{Def} The quantum algebra of \(Sl_2\) is given by:
+\[Sl_q(2):=\mathbb{C}_q[Sl_2]:=\mathbb{C}[Sl_2]/(I_q,\det_q-1)\]
+\end{Def}
+
+\begin{Prop} There exists a Hopf algebra structure on \(Sl_q(2)\) with the following operations:
+\begin{align*}
+\Delta(M) &= M\otimes M\\
+\epsilon(M) &= Id_2\\
+S(M) &= \begin{pmatrix} d & -qb \\ -q^{-1}c & a \end{pmatrix}
+\end{align*}
+\end{Prop}
+
+\subsection{\Large \textbf{Quantum differentials}}
+Recall that, \(sl_2\) is the algebra of differentials of \(\mathbb{C}[SL_2]\). As a dual perspective, one can consider the action of \(sl_2\) on the complex plane through the identification:
+
+\begin{align*}
+&eP=x\frac{\partial}{\partial y} P \\
+&fP=\frac{\partial}{\partial x} P\cdot y \\
+&hP=x\frac{\partial}{\partial x}P-\frac{\partial}{\partial y}P\cdot y 
+\end{align*}
+
+where \(P\in\mathbb{C}[x,y]\). Now, we introduce the \(q\)-derivatives, which are the \textit{quantum} analogs of the previous classical differentials:
+
+\begin{Def} Let \(m,n\in\mathbb{N}\). A \(q\)-derivative of \(\mathbb{C}_q\langle x,y\rangle\) satisfies:
+
+\[\frac{\partial_q}{\partial x}(x^my^n)=[m]_qx^{m-1}y^{n}, \quad \frac{\partial_q}{\partial y}(x^my^n)=[n]_qx^{m}y^{n-1}\]
+
+where, \([n]_q=\frac{q^n-q^{-n}}{q-q^{-1}}\) is the so-called \(q\)-number.
+\end{Def}
+
+With this, we define the generators \(E\), \(F\), and \(K\) of the quantum groups \(U_q(sl_2)\), analogous to the corresponding classical generators \(e\), \(f\), and \(h\) of \(U(sl_2)\), by replacing the classical derivatives with their quantum analogs.
+
+
+\subsection{\Large \textbf{Deforming the enveloping Lie algebra and self-duality}}
+
+\begin{Def} Let \(U_q(sl_2)\) be the algebra over \(\mathbb{C}(q)\) spanned by \(E\), \(F\), \(K\) defined by the following relations:
+
+\begin{align*}
+&KEK^{-1}=qE\\
+&KFK^{-1}=q^{-1}F\\
+&[E,F]=\frac{K-K^{-1}}{q^{1/2}-q^{-1/2}}
+\end{align*}
+
+Here, \(K\) plays the role of the generator of a "quantum Cartan subalgebra" of \(U_q(sl_2)\).
+\end{Def}
+
+Given two elements \(P\) and \(Q\) in the quantum plane, one can show, using the \(q\)-derivative, that:
+
+\begin{align}
+&K(PQ)=K(P)K(Q)\\
+&E(PQ)=PE(Q)+E(P)K'(Q)\\
+&F(PQ)=K^{-1}(P)F(Q)+F(P)Q
+\end{align}
+
+This enables us to endow the quantum group with a Hopf algebra structure\cite{Kassel} (VII p150).
+
+\begin{theo} The coproduct \(\Delta\) is defined as follows:
+
+\begin{align*}
+&\Delta(E)=1\otimes E+E\otimes K\\
+&\Delta(F)=K^{-1}\otimes F+F\otimes 1\\
+&\Delta(K)=K\otimes K
+\end{align*}
+
+The counit \(\epsilon\) is defined as:
+
+\begin{align*}
+&\epsilon(E)=\epsilon(F)=0\\
+&\epsilon(K)=\epsilon(K^{-1})=1
+\end{align*}
+
+And the antipode \(S\) is defined as:
+
+\begin{align*}
+&S(E)=-EK^{-1}\\
+&S(F)=-KF\\
+&S(K)=K^{-1}
+\end{align*}
+
+This endows the quantum group \(U_q(sl_2)\) with the structure of a Hopf algebra.
+\end{theo}
+
+A key property of quantum groups is the fact that they are self-dual Hopf algebras.
+
+\begin{Prop} Let \(U_q(\mathfrak{b}^+)\) be the Hopf algebra spanned by \(E\) and \(K\). This algebra is self-dual via the following non-degenerate Hopf pairing:
+
+\[\langle-,-\rangle : U_q(\mathfrak{b}^+)\otimes U_q(\mathfrak{b}^+)\to \mathbb{C}(q)\]
+
+such that:
+
+\begin{align*}
+&\langle E,E\rangle = 1\qquad \langle E, K\rangle =\langle K,E\rangle =0 \\
+&\langle K,K\rangle = q
+\end{align*}
+\end{Prop}
+
+According to \cite{Kassel} (theorem VII 4.4), there exists a duality between \(U_q(sl_2)\) and \(SL_q(2)\), which is the quantum version of the classical duality \ref{classical duality} (when \(q=1\)). Thus, the quantum group is truly a non-commutative, non-cocommutative, self-dual Hopf algebra. It can be interpreted in two different ways:
+
+\begin{itemize}
+\item A \(q\)-deformation of a Hopf algebra associated with some enveloping Lie algebra through the \(q\)-deformation of the action of the algebra of differential of regular functions over some Lie group.
+\item A \(q\)-deformation of the Hopf algebra of regular functions over some Lie group through its co-action on a non-commutative space.
+\end{itemize} 
+\pagebreak
+We've focused on the case \(sl_2\), but quantum groups can be defined in general analogously:
+
+\begin{Def} Let \(\mathfrak{g}\) be a Lie algebra with Cartan matrix \(A=(a_{ij})_{0\leqslant i,j\leqslant l}\). The quantum Lie algebra \(U_q(\mathfrak{g})\) is a \(\mathbb{C}(q)\)-algebra spanned by the family \(\{K_i,E_i,F_i\vert i=0,..l\}\) with relations:
+
+\begin{align*}
+&K_iK_j=K_jK_i\\
+&K_iE_jK_i^{-1}=q^{a_{ij}/2}E_j\\
+&K_iF_jK_i=q^{-a_{ij}/2}F_j\\
+&[E_i,F_j]=\delta_{ij}\frac{K_i-K_j^{-1}}{q^{1/2}-q^{-1/2}}\\
+&\sum_{k=0}^{1-a_{ij}}(-1)^{k}\binom{1-a_{ij}}{k}E_i^lE_jE_i^{1-a_{ij}-l}=0\\
+&\sum_{k=0}^{1-a_{ij}}(-1)^{k}\binom{1-a_{ij}}{k}F_i^lF_jF_i^{1-a_{ij}-l}=0
+\end{align*}
+
+The last two relations are the quantum analog of the Serre's relations.
+\end{Def}
+
+\section[\Large \textbf{Knot theory}]{\Large \textbf{Knot theory \cite{Alexander1923,chaoticknots,Williams1998}}}
+
+\begin{Def} A \textit{link} is defined as a finite collection of disjoint circles smoothly embedded in $\mathbb{R}^3$.
+\end{Def}
+\begin{Def} A \textit{knot} is a specific type of link with only one connected component.
+\end{Def}
+\begin{Def} An \textit{isotopy} of a link refers to a smooth deformation of the link within the class of links, which does not create any new intersections or self-intersections.
+\end{Def}
+The primary objective of knot theory is to classify knots based on their equivalence under isotopy.
+
+\subsection{\Large \textbf{Reidemeister moves}} 
+
+
+Links projected on the plane can be conveniently represented.
+
+\begin{Def}
+A \textit{framing} of a projected link involves choosing an orientation for the link and assigning a sign, either \(+1\) or \(-1\), to each over/undercrossing.
+\end{Def}
+
+Furthermore, we define the \textit{framing number} of a link as the sum of the signs assigned at each crossing.
+
+Now, we introduce three elementary moves on links known as the \textit{Reidemeister} moves:
+
+\begin{theo}
+Two link diagrams represent isotopic framed links if and only if they can be related by an isotopy and a finite sequence of Reidemeister moves.
+\end{theo}
+
+Additionally, let \(K\) and \(K'\) be two oriented knots, and assign \(+1\) or \(-1\) to each over/undercrossing in the link diagram where \(K\) and \(K'\) meet. The sum of these assigned numbers is known as the \textit{linking number}, denoted \(lk(K,K')\), and it is preserved under Reidemeister moves.
+
+\subsection{\Large \textbf{Skein classes}}
+\begin{Def} Let $a$ be some complex number. Let $E(a)$ be the complex vector space spanned by all linked diagrams quotiented by : \begin{itemize}
+\item Isotopy relation
+\item the relation $D\cup O=-(a^2+a^{-2})D$ where $O$ is a simple circle in the complementary of $D$
+\item the Kauffmann's skein relation that one obtained by smoothing the crossing of a diagram, there are two admissible resulting diagrams  given a choice of clockwise or anticlockwise smoothing of the initial crossing :  \vspace{10cm}
+\end{itemize}
+For a diagram $D$ we will denote $\langle D\rangle $ its skein class. The empty link diagram will be denoted $\langle \emptyset\rangle$.
+\end{Def}
+Applying the Kauffmann's skein relation iteratively to some diagram  $D$ and $\emptyset\cup O=-(a^2+a^{-2})\emptyset$  one obtain the following fact :
+\begin{Prop}\label{Edim1}
+The vector space $E(a)$ is one dimensional and $$E(a)=Vect(\langle\emptyset\rangle)$$ 
+\end{Prop}
+It's also funny to check the following : 
+\begin{Prop}\label{skeininv}
+The skein class of any link diagram is invariant under Reidemeister moves
+\end{Prop}
+
+\subsection{\Large \textbf{The bracket polynomial}} 
+
+Let \(a\) be a complex number such that \(a^2+a^{-2}\) is non-zero. Utilizing Kauffman's recursive relation and equation \ref{Edim1}, it follows that the skein class of any link diagram \(D\) is a Laurent polynomial in \(a\) that is divisible by \(a^2+a^{-2}\). Moreover, according to \ref{skeininv}, this polynomial is invariant under isotopy. Hence, we introduce the following definition:
+
+\begin{Def} The bracket polynomial, denoted \(\langle L\rangle (a)\), is defined as follows:
+\[ \langle L\rangle (a) := -(a^2+a^{-2})^{-1}\langle D\rangle(a) \]
+\end{Def}
+
+\begin{ex}
+
+Consider the bracket polynomial of the Hopf link:
+\[ \langle L\rangle (a) = -a^4 - a^{-4} \]
+\end{ex}
+\subsection{\Large \textbf{The Jones polynomial}}
+\begin{Def}
+    
+Consider a framed link \(L\). Let \(w(D)\) be the sum of the signs of each crossing in the link diagram \(D\) of \(L\). Let \(D\) be the number of crossing points in \(D\), and \(q\) be a complex number. The Jones polynomial \(V_{L}(q)\) is defined as:
+
+\[V_{L}(q) := (-1)^{|D|+1} q^{3w(D)/2} \frac{\langle D\rangle(q^{-1/2})}{q+q^{-1}}\]
+
+\end{Def}
+The Jones polynomial is isotopy invariant, just like the bracket polynomial. Additionally, it evaluates to one for the trivial knot. The Jones polynomial exhibits an interesting property known as the Conway triple:
+
+\begin{Prop} 
+Let \(L_+\), \(L_{-}\), and \(L_0\) form a Conway triple. Then, the following relation holds:
+
+\[q^{-2}V(L_{+})-q^{-2}V(L_{-}) = (q-q^{-1})V(L_0)\]
+\end{Prop}
+
+
+\section{\Large \textbf{Tangles}} Tangles are links that contain arcs with prescribed endpoints.
+
+\begin{Def}
+Let \(k\) and \(l\) be natural numbers. A \textit{tangle} with \(k\) inputs and \(l\) outputs, or a \((k,l)\)-tangle, is a finite union of disjoint smoothly embedded arcs and circles in \(\mathbb{R}^2 \times [0,1]\), where the endpoints of the arcs are given by \((1,0,0), (2,0,0), \ldots, (k,0,0)\) and \((1,0,1), (2,0,1), \ldots, (l,0,1)\).
+\end{Def}
+
+Tangle diagrams can be defined in the projection of the plane, and we can also consider framed tangled diagrams, isotopy classes, skein classes, and skein modules in the same manner as we did for links. The main objective of tangle theory is to classify tangles up to isotopy.
+
+\subsection{\Large \textbf{The category of tangles}}
+We define the category of tangles and the notion of braiding in this category. Objects of this category are natural integers \(0,1,2,\ldots\), and morphisms are arrows \(k\to l\) that are isotopy classes of framed \((k,l)\)-tangles. The composition \(f\circ g\) is defined by attaching \(f\) on the top of \(g\) and compressing the resulting diagram into \(\mathbb{R}\times [0,1]\). We also have a tensor product functor such that for objects \(k\) and \(l\), \(k\otimes l\) results in an object \(k+l\), and the tensor product of morphisms is the juxtaposition of framed tangle diagrams without creating new intersections.
+
+
+\begin{Def} A braiding in the category of tangles is a morphism \(c_{k,l}: k\otimes l \to l\otimes k\) that places a bunch of \(k\) arcs above \(l\) arcs, resulting in a tangle diagram with \(kl\) crossing points.
+\end{Def}
+
+\subsection{\Large \textbf{Braids}}
+\begin{Def}
+A braid is a specific tangle that consists only of arcs or strands and has no circles.
+\end{Def}
+Similarly, we've the notions of braid diagrams, framed braids, isotopy classes, and more.
+
+\begin{Def}
+Let \(n\) be a positive integer greater than 2. The braid group \(B_n\) with \(n\) strands is an infinite group defined by \(n-1\) generators \(\sigma_1, \sigma_2, \ldots, \sigma_{n-1}\) with the following relations:
+\begin{align*}
+&\sigma_i\sigma_j = \sigma_j\sigma_i \quad \text{for all } |i-j| > 1\\
+&\sigma_{i+1}\sigma_i\sigma_{i+1} = \sigma_{i}\sigma_{i+1}\sigma_{i} \quad \text{for all } 1 \leq i, j \leq n-1 \\
+\end{align*}
+\end{Def}
+
+It is immediately noticeable that the symmetric group \(S_n\) generated by permutations \(\sigma_i = (i,i+1)\) is the braid group quotiented by the relation \(\sigma_i^2 = 1\). 
+
+Now, consider a finite-dimensional vector space \(V\) and an automorphism \(R \in \text{Aut}(V\otimes V)\) that satisfies the Yang-Baxter equation. Define \(R_i \in \text{Aut}(V^{\otimes n})\) as follows:
+\[R_i = \text{id}_{V^{i-1}}\otimes R \otimes \text{id}_{V^{\otimes n-i-1}}\]
+The automorphisms \(R_i\) satisfy the braid relations, and from this, we deduce the following proposition:
+
+\begin{Prop}
+Let \(R \in \text{Aut}(V\otimes V)\) be a solution of the Yang-Baxter equation. Then, for any \(n > 0\), there exists a unique group homomorphism \(\rho_n^{R}: B_n \to \text{Aut}(V^{\otimes n})\) such that \(\rho_n^{R}(\sigma_i) = R_i\).
+\end{Prop}
+
+Thus, \(R\) matrices give rise to representations of the braid group.
+
+\section{\Large \textbf{Braided categories}}
+\subsection{\Large \textbf{Monoidal category}}
+One significant distinction from commutative algebra arises due to the fact that the canonical isomorphism of \(A\)-module \(V\otimes W\simeq W\otimes V\) induced by the flip is not generally linear. This deviation occurs when dealing with two \(A\) modules \(V\) and \(W\) in the context of a bialgebra \(A\). The structure of an \(A\)-module over \(V\otimes W\) is defined as follows:
+\[a.(v\otimes w)=\Delta(a)(v\otimes w)=\sum_{i}a_{i}v\otimes a'_{i}w\]
+However, unless the bialgebra is cocommutative, \(a.(v\otimes w)\neq a.(w\otimes v)\), since
+\[a.(w\otimes v)=\Delta(a)\tau_{V,W}(v\otimes w)=\Delta^{op}(a)(v\otimes w)\]
+Here, we can observe that the non-commutativity of \(A\) modules, arising from the non-cocommutativity of the coproduct, will be quantified, in a sense, by a universal \(R\) matrix, leading to the notion of a braided bialgebra. However, for now, let us focus on defining the concept of a \textit{strict monoidal category}:
+
+\begin{Def} 
+Let \(\mathcal{C}\) be a category, and \(\otimes\) be a functor from \(\mathcal{C}\times\mathcal{C}\to \mathcal{C}\). A \textit{strict monoidal category} with the unit object \(1\) is a category where, for all objects \(V\), \(W\), \(U\), and all morphisms \(f\), \(g\), \(h\) in \(\mathcal{C}\), the following conditions hold:
+\begin{align}
+(U\otimes V)\otimes W & = U\otimes(V\otimes W) \\
+(f\otimes g)\otimes h & = f\otimes(g\otimes h)\\
+V\otimes 1 & = 1\otimes V = V\\
+f\otimes \text{id}_{1} & = \text{id}_{1}\otimes f = f 
+\end{align}
+The idea behind a strict monoidal category is that the tensor product functor is associative for all objects and morphisms in \(\mathcal{C}\).
+In commutative algebra, for instance, in the category of modules over some commutative ring, there exists a canonical isomorphism such that: \(M\otimes N\simeq N\otimes M\). However, in the categories we are going to study, such as the category of tangles or representations of quantum groups, this is no longer the case, and one must consider the non-commutativity of the objects.
+\end{Def}
+
+\subsection{\Large \textbf{Braided bi-algebra}} 
+
+
+
+We'll construct an isomorphism of objects in a monoidal category \(\mathcal{C}\) that quantifies the non-commutativity of the coproduct, known as the \textit{braiding}.
+\begin{Def}
+Let \(V\) and \(W\) be two objects in \(\mathcal{C}\). A commutativity constraint \(R_{V,W}: V\otimes W\to W\otimes V\) is such that for any morphism \(f\otimes g : V\otimes W\to V'\otimes W'\), we have \(R_{V',W'}(f\otimes g) = (g\otimes f)R_{V,W}\).
+\end{Def}
+
+\begin{Def}
+A \textit{braiding} is a commutativity constraint that satisfies the following conditions:
+\begin{align*}
+&R_{U\otimes V,W} = (R_{U,V}\otimes Id_W)(Id_U\otimes R_{V,W})\\
+&R_{U,V\otimes W} = (Id_V\otimes R_{U,W})(R_{U,V}\otimes Id_W)
+\end{align*}
+\end{Def}
+
+\begin{Def}
+A \textit{braided monoidal category} is a monoidal category equipped with braiding.
+\end{Def}
+
+A significant result that can be verified using tangle diagrams is that the braiding in a braided monoidal category satisfies the Yang-Baxter equation.
+
+The following theorem characterizes the categories of \(A\) modules that are braided:
+\begin{theo}
+Let \(A\) be a bi-algebra. The category of \(A\) modules is braided if and only if there exists an invertible element \(R\in A\otimes A\) such that:
+\begin{align*}
+&\Delta^{op}(x) = R\Delta(x) R^{-1}\\
+&(\Delta\otimes Id_A)(R) = R_{12}R_{13}\\
+&(Id_A\otimes \Delta)(R) = R_{13}R_{12}
+\end{align*}
+where \(R_{12} = R\otimes Id_A\), \(R_{23} = Id_A\otimes R\), and \(R_{13} = (\tau_{A,A}\otimes Id_A)(Id_A\otimes R)\). The element \(R\) is called a \textit{universal} \(R\) matrix as it produces solutions of the Yang-Baxter equations. Intuitively, the universal \(R\) matrix measures the non-cocommutativity of the coproduct.
+\vspace{0.5cm}
+
+A braided bialgebra \(A\) with a universal \(R\) matrix is referred to as a \textit{braided bi-algebra}. If \(A\) has an antipode, it is known as a \textit{braided Hopf algebra}.
+\end{theo}
+
+\begin{theo}
+\cite{KasRossTur}(p55) The category of tangles with the braiding \(R_{k,l}\) defined previously forms a braided monoidal category.
+\end{theo}
+
+\section{\Large \textbf{Ribbon category and quantum invariant}}
+\subsection{\Large \textbf{Ribbon category}}
+\begin{Def} In a monoidal category \(\mathcal{C}\), let \(V\) be an object associated with its dual object \(V^{*}\). Suppose we have morphisms:
+\[b_V : 1\to V\otimes V^{*}, \quad d_V : V\otimes V^{*}\to 1\]
+The pair \((V, V^{*})\) is said to form a duality in \(\mathcal{C}\) if the following conditions hold:
+\[(\text{id}_V\otimes d_V)(b_V\otimes \text{id}_V)=\text{id}_V, \quad (d_V\otimes \text{id}_{V^{*}})(\text{id}_{V^{*}}\otimes b_V)=\text{id}_{V^{*}}\]
+\begin{ex} In the category of modules, the standard evaluation and co-evaluation form a duality.
+\end{ex}
+\end{Def}
+
+\begin{Def} In a monoidal category \(\mathcal{C}\) with braiding \(R_{V,W}\), a twist \(\theta\) is a natural family of isomorphisms:
+\[\theta=\left\lbrace\theta_V : V\to V \right\rbrace\]
+such that for any two objects \(V\) and \(W\) in \(\mathcal{C}\), the following holds:
+\[\theta_{V\otimes W}=R_{W,V}R_{V,W}(\theta_V\otimes\theta_W)\]
+Naturality means that \(\theta\) commutes with any morphism.
+\end{Def}
+
+\begin{Def}
+A ribbon category is a monoidal category equipped with braiding, duality, and twist, satisfying the following compatibility:
+\[(\theta_V\otimes \text{id}_{V^{*}})b_V=(\text{id}_V\otimes\theta_{V^{*}})b_V\]
+\end{Def}
+
+\begin{ex} The category of tangles is a ribbon category with:
+\[\theta_k : k\to k, \quad b_k : 0\to 2k, \quad d_k : 2k\to 0\]
+\end{ex}
+
+The following theorem is interesting as it replaces equations with tangle diagrams
+
+\begin{theo} \cite{KRP} (2.2 p67) Given a ribbon category \(\mathcal{C}\) with braiding, we can always color the objects and morphisms of the category of framed color tangles with the objects of \(\mathcal{C}\). This gives rise to a functor from the category of framed color tangles to \(\mathcal{C}\) that preserves the tensor product.
+\end{theo}
+
+\subsection{\Large \textbf{Quantum invariant}}
+An alternative method to construct a quantum group from a Lie algebra \(\mathfrak{g}\) is through quantization, transforming it into a \(\mathbb{C}[[h]]\)-module of \(\mathfrak{g}\)-valued formal series, where \(h\) plays the role of the Planck constant in quantum mechanics. This process is referred to as "quantization." The resulting quantum group is denoted as \(U_h(\mathfrak{g})=U(\mathfrak{g})[[h]]\).
+
+The construction of \(U_h(\mathfrak{g})\) satisfies the following properties:
+\begin{itemize}
+\item As a \(\mathbb{C}[[h]]\)-module, \(U_h(\mathfrak{g})=U(\mathfrak{g})[[h]]\).
+\item As a Hopf algebra, we've \(U_h(\mathfrak{g})/hU_h(\mathfrak{g})=U_h(\mathfrak{g})\).
+\item There exist co-product, counit, and antipode structures that make \(U_h(\mathfrak{g})\) a topological Hopf algebra.
+\item Any finite-dimensional \(\mathfrak{g}\) module \(V\) extends uniquely to a unique \(U_h(\mathfrak{g})\)-module \(V_h=V[[h]]\).
+\end{itemize}
+
+The category \(\mathbb{C}_h\) consists of objects that are \(U_h(\mathfrak{g})\)-modules and is, in fact, a Ribbon category. Utilizing this fact and the previous theorem, a functor \(F_{\mathfrak{g}, V}\) can be constructed from the category of colored tangles to the category of \(U_h(\mathfrak{g})\)-modules that preserves tensor products. Consequently, for every oriented link \(K\), an isotopy invariant \(F_{\mathfrak{g},V}(K)\) is defined in the form:
+
+\[F_{\mathfrak{g},V}(K)=\sum_{m\geq 0}F_{\mathfrak{g},V,m}(K)h^m\]
+
+\newpage
+\bibliography{biblio}{}
+\bibliographystyle{plain}
+\end{document}
